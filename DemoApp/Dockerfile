@@ -1,9 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY DemoApp/DemoApp.csproj /src/DemoApp
-RUN dotnet restore DemoApp/DemoApp.csproj
+COPY DemoApp.csproj .
+RUN dotnet restore DemoApp.csproj
 COPY . .
-RUN dotnet publish DemoApp/DemoApp.csproj -c Release -o /app
+RUN dotnet publish DemoApp.csproj -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
