@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ItemListComponent } from "./components/item-list/item-list.component";
+
 
 @Component({
   selector: 'app-root',

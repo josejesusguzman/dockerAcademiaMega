@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService, Item } from '../../services/item.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-@Component({ selector: 'app-item-list', templateUrl: './item-list.component.html' })
+@Component({
+  selector: 'app-item-list',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './item-list.component.html',
+})
 export class ItemListComponent implements OnInit {
   items: Item[] = [];
   newItem: Item = { name: '', price: 0 };
