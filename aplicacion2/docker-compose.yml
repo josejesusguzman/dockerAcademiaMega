@@ -7,17 +7,19 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - app-net
+      - net-backend-mongo
 
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
     container_name: backend
     env_file:
       - ./backend/src/.env
     depends_on:
       - mongodb
+    networks:
+      - net-backend-mongo
+      - net-backend-frotend
     
   frontend:
     build:
@@ -26,10 +28,14 @@ services:
     container_name: frotend
     depends_on:
       - backend
+    networks:
+      - net-backend-frotend
 
 volumes:
   mongo-data:
 
 networks:
-  app-net:
+  net-backend-frotend:
+    driver: bridge
+  net-backend-mongo:
     driver: bridge

@@ -4,9 +4,9 @@ import { ItemListComponent } from "./components/item-list/item-list.component";
 
 @Component({
   selector: 'app-root',
-  imports: [ItemListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  standalone: false
 })
 export class AppComponent {
   title = 'frontend';
