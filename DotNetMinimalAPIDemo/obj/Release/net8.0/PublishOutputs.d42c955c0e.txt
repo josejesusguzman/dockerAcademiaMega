@@ -1,0 +1,12 @@
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\DotNetMinimalAPIDemo.exe
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\appsettings.Development.json
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\appsettings.json
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\DotNetMinimalAPIDemo.dll
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\DotNetMinimalAPIDemo.deps.json
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\DotNetMinimalAPIDemo.runtimeconfig.json
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\DotNetMinimalAPIDemo.pdb
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\Microsoft.OpenApi.dll
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\ROG Zephyrus G16\Documents\PROGRAMMING\appnode\DotNetMinimalAPIDemo\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
