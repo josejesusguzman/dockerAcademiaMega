@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-hello
+  template:
+    metadata:
+      labels:
+        app: k8s-hello
+    spec:
+      containers:
+      - name: hello
+        image: docker.io/josejesusguzman/k8s-hello:latest
+        ports:
+        - containerPort: 3000
