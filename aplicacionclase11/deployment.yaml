@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: hello
-        image: docker.io/josejesusguzman/k8s-hello:latest
+        image: josejesusguzman/k8s-hello:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 3000
