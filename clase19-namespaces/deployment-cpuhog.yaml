@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: cpu-hog, namespace: dev}
+spec:
+  replicas: 5
+  selector: {matchLabels: {app: cpu-hog}}
+  template:
+    metadata: {labels: {app: cpu-hog}}
+    spec:
+      containers:
+      - name: stress
+        image: vish/stress
+        resources:
+          requests:
+            cpu: "1"
+            memory: "100Mi"
+          limits:
+            cpu: "1"
+            memory: "200Mi"
+        args: ["-cpu", "1", "-timeout", "20s"]
