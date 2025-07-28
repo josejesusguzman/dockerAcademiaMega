@@ -1,31 +1,56 @@
-{{- include "clase21-chart.helpers.labels" . | nindent 0 }}
-spec:
-	replicas: 1
-	selector: 
-		matchLabels:
-			{{- include "clase21-chart.helpers.selectorLabels" . | nindent 6 }}
-	template:
-		metadata:
-			labels:
-				{{- include "clase21-chart.helpers.selectorLabels" . | nindent 8 }}
-		spec:
-			containers:
-				- name: {{ .Chart.Name }}
-					image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-					imagePullPollicy: {{ .Values.image.pullPolicy }}
-					ports:
-						- name: http
-							containerPort: 80
-							protocol: TCP
-					{{- if .Values.configMap.enabled }}
-					volumeMounts:
-						- name: config-volume
-							mountPath: /usr/share/nginx/html
-					{{- end}}
-			{{- if .Values.configMap.enabled }}
-			volumes:
-				- name: config-volume
-					configMap:
-						name: {{ .Chat.Name }}-configmap
-			{{- end}}
+# 📂 clase21-chart/templates/deployment.yaml
+# ---
+# Este manifiesto le dice a Kubernetes cómo desplegar y gestionar los pods de nuestra aplicación.
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  labels:
+    {{- include "clase21-chart.helpers.labels" . | nindent 4 }}
+spec:
+  # Define el número de réplicas (pods) que queremos corriendo.
+  replicas: 1
+  selector:
+    # El 'selector' ayuda al Deployment a encontrar qué pods debe gestionar.
+    # Coincide con las etiquetas definidas en la plantilla del pod.
+    matchLabels:
+      {{- include "clase21-chart.helpers.selectorLabels" . | nindent 6 }}
+  template:
+    # Esta es la plantilla para los pods que se crearán.
+    metadata:
+      labels:
+        # Los pods se crean con estas etiquetas para que el selector los encuentre.
+        {{- include "clase21-chart.helpers.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80 # Puerto que la aplicación escucha dentro del contenedor.
+              protocol: TCP
+          # --- Inicio de la Lógica Condicional ---
+          # La sección 'volumeMounts' solo se incluirá en el YAML final
+          # si 'configMap.enabled' es 'true' en el archivo 'values.yaml'.
+          {{- if .Values.configMap.enabled }}
+          volumeMounts:
+            - name: config-volume # Debe coincidir con el nombre de un 'volume' definido abajo.
+              # Monta el volumen en esta ruta dentro del contenedor,
+              # sobreescribiendo el index.html por defecto de Nginx.
+              mountPath: /usr/share/nginx/html
+          {{- end }}
+          # --- Fin de la Lógica Condicional ---
+
+      # --- Inicio de la Lógica Condicional ---
+      # La sección 'volumes' también se genera condicionalmente.
+      {{- if .Values.configMap.enabled }}
+      volumes:
+        - name: config-volume # Define un volumen llamado 'config-volume'.
+          configMap:
+            # Especifica que el origen de este volumen es un ConfigMap.
+            # El nombre del ConfigMap se genera dinámicamente.
+            name: {{ .Chart.Name }}-configmap
+      {{- end }}
+      # --- Fin de la Lógica Condicional ---

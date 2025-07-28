@@ -4,5 +4,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Chart.Name }}-configmap
 data:
-  index.html: {{ .Values.configMap.data.index.html | quote }}
+  index.html: {{ get .Values.configMap.data "index.html" | quote }}
 {{- end}}

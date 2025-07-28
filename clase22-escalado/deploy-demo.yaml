@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-demo
+  template:
+    metadata:
+      labels:
+        app: cpu-demo
+    spec:
+      containers:
+        - name: php-cpu
+          image: vish/stress:latest
+          resources:
+            requests:
+              cpu: "200m"
+            limits:
+              cpu: "500m"
+          args:
+          - "-cpus"
+          - "1"
