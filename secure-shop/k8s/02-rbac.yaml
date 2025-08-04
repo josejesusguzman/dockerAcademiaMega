@@ -10,7 +10,7 @@ metadata:
   name: read-catalog
   namespace: secureshop
 rules:
-- apiGroup: [""]
+- apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["get"]
 ---

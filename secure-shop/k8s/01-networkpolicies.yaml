@@ -1,4 +1,4 @@
-apiVersion: network.k8s.io/v1
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: default-deny
@@ -7,6 +7,7 @@ spec:
   podSelector: {}
   policyTypes: ["Ingress", "Egress"]
 ---
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: allow-front-ingress
@@ -16,9 +17,10 @@ spec:
     matchLabels: { app: frontend }
   ingress:
   - ports:
-    - protocol: TPC
+    - protocol: TCP
       port: 80
 ---
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: backend-egress
@@ -28,7 +30,9 @@ spec:
     matchLabels: { app: backend }
   egress:
   - to:
-    - podSelector: { app: postgres }
+    - podSelector:
+        matchLabels:
+          app: postgres
       namespaceSelector: {}
     ports:
     - protocol: TCP
